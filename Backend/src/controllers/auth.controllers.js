@@ -1,4 +1,4 @@
-import{User }from '../models/user.models.js';
+import { User } from '../models/user.models.js';
 import { ApiError } from '../utils/ApiError.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
 import asyncHandler from '../utils/async-handler.js';
@@ -23,7 +23,7 @@ const generateToken = async (user, res) => {
 };
 
 const signUp = asyncHandler(async (req, res) => {
-  const { username, email, password , role } = req.body;
+  const { username, email, password, role } = req.body;
 
   const existingUser = await User.findOne({
     $or: [{ username: username }, { email: email }],
@@ -84,4 +84,7 @@ const logout = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, [], 'User logout successful'));
 });
 
+const resetPassword = asyncHandler(async (req, res) => {
+    
+});
 export { signUp, login, logout };
